@@ -1,0 +1,10 @@
+---
+
+- name: Hello World Play
+  hosts: windows
+  tasks:
+    - name: Hello World
+      win_msg:
+        display_seconds: 60
+        msg: Hello World!
+
