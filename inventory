@@ -1,0 +1,5 @@
+[windows]
+windows01 ansible_host=10.2.78.74
+
+[control]
+localhost
