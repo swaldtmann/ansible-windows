@@ -1,6 +1,6 @@
 # Makefile for pi-stack-ansible-tower-scripts
 
-.PHONY: ev dump dumpvars ping reboot halt off red green blue wifi
+.PHONY: ev dump dumpvars ping users
 
 
 ev:
@@ -14,4 +14,7 @@ dumpvars:
 	
 ping:
 	ansible windows -i inventory -m win_ping
+
+users:
+	ansible-playbook users.yml -kK
 

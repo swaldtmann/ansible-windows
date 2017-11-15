@@ -1,0 +1,3 @@
+---
+local_user: "{{ vault_local_user }}"
+git_urls: "{{ vault_git_urls }}"

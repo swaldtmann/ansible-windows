@@ -1,0 +1,100 @@
+---
+- name: Assure local users exist
+  hosts: control
+  become: yes
+  tasks:
+    - include_vars: group_vars/vault
+    
+    - name: create user
+      user:
+        name: "{{ item }}"
+        shell: /bin/bash
+        groups: wheel, awx
+        append: yes
+        state: "{{ local_user.state }}"
+        password: "{{ local_user.password|password_hash('sha512') }}"
+      with_sequence: start=1 end=10 format=ansibleuser%02d
+
+    - name: clone repos for users 
+      block:    
+      - name: clone git repo(s) ansibleuser01
+        git:
+           repo: "{{ item.url }}"
+           dest: "{{ item.dir }}"
+        with_items: "{{ git_urls }}"
+        become_user: ansibleuser01
+        become: true
+
+      - name: clone git repo(s) ansibleuser02
+        git:
+           repo: "{{ item.url }}"
+           dest: "{{ item.dir }}"
+        with_items: "{{ git_urls }}"
+        become_user: ansibleuser02
+        become: true
+
+      - name: clone git repo(s) ansibleuser03
+        git:
+           repo: "{{ item.url }}"
+           dest: "{{ item.dir }}"
+        with_items: "{{ git_urls }}"
+        become_user: ansibleuser03
+        become: true
+
+      - name: clone git repo(s) ansibleuser04
+        git:
+           repo: "{{ item.url }}"
+           dest: "{{ item.dir }}"
+        with_items: "{{ git_urls }}"
+        become_user: ansibleuser04
+        become: true
+
+      - name: clone git repo(s) ansibleuser05
+        git:
+           repo: "{{ item.url }}"
+           dest: "{{ item.dir }}"
+        with_items: "{{ git_urls }}"
+        become_user: ansibleuser05
+        become: true
+
+      - name: clone git repo(s) ansibleuser06
+        git:
+           repo: "{{ item.url }}"
+           dest: "{{ item.dir }}"
+        with_items: "{{ git_urls }}"
+        become_user: ansibleuser06
+        become: true
+
+      - name: clone git repo(s) ansibleuser07
+        git:
+           repo: "{{ item.url }}"
+           dest: "{{ item.dir }}"
+        with_items: "{{ git_urls }}"
+        become_user: ansibleuser07
+        become: true
+
+      - name: clone git repo(s) ansibleuser08
+        git:
+           repo: "{{ item.url }}"
+           dest: "{{ item.dir }}"
+        with_items: "{{ git_urls }}"
+        become_user: ansibleuser08
+        become: true
+
+      - name: clone git repo(s) ansibleuser09
+        git:
+           repo: "{{ item.url }}"
+           dest: "{{ item.dir }}"
+        with_items: "{{ git_urls }}"
+        become_user: ansibleuser09
+        become: true
+
+      - name: clone git repo(s) ansibleuser10
+        git:
+           repo: "{{ item.url }}"
+           dest: "{{ item.dir }}"
+        with_items: "{{ git_urls }}"
+        become_user: ansibleuser10
+        become: true
+
+      when: local_user.state == "present"
