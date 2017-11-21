@@ -4,8 +4,6 @@
   hosts: windows
   gather_facts: no
   tasks:
-    - include_vars: group_vars/vault
-
     - name: Hello World
       win_msg:
         display_seconds: 60
