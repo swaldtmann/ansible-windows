@@ -10,7 +10,7 @@
       user:
         name: "{{ item }}"
         shell: /bin/bash
-        groups: vagrant
+        groups: sudo
         append: yes
         state: "{{ local_user.state }}"
         password: "{{ local_user.password|password_hash('sha512') }}"
