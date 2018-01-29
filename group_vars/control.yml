@@ -1,3 +1,8 @@
 ---
-local_user: "{{ vault_local_user }}"
-git_urls: "{{ vault_git_urls }}"
+local_user: 
+  state: present
+  password: test123#
+git_urls: 
+  - name: ansible-windows
+    url: "https://github.com/swaldtmann/ansible-windows.git"
+    dir: ansible-windows

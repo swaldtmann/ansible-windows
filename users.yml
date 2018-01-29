@@ -1,15 +1,16 @@
 ---
 - name: Assure local users exist
-  hosts: control
+  hosts: localhost
   become: yes
+  remote_user: root
   tasks:
-    - include_vars: group_vars/vault
+    #- include_vars: group_vars/vault
     
     - name: create user
       user:
         name: "{{ item }}"
         shell: /bin/bash
-        groups: wheel, awx
+        groups: vagrant
         append: yes
         state: "{{ local_user.state }}"
         password: "{{ local_user.password|password_hash('sha512') }}"
